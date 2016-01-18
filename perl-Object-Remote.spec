@@ -1,6 +1,6 @@
 Name:           perl-Object-Remote
-Version:        0.003005
-Release:        2%{?dist}
+Version:        0.003006
+Release:        1%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/Object-Remote/
@@ -104,6 +104,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Mon Jan 18 2016 Jitka Plesnikova <jplesnik@redhat.com> - 0.003006-1
+- 0.003006 bump
+
 * Thu Jan 07 2016 Jitka Plesnikova <jplesnik@redhat.com> - 0.003005-2
 - Update list of dependencies
 
