@@ -1,6 +1,6 @@
 Name:           perl-Object-Remote
 Version:        0.003006
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/Object-Remote/
@@ -104,6 +104,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Tue May 17 2016 Jitka Plesnikova <jplesnik@redhat.com> - 0.003006-3
+- Perl 5.24 rebuild
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.003006-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
