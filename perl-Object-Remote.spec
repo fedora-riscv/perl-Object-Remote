@@ -1,6 +1,6 @@
 Name:           perl-Object-Remote
-Version:        0.003006
-Release:        3%{?dist}
+Version:        0.004000
+Release:        1%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/Object-Remote/
@@ -28,6 +28,7 @@ BuildRequires:  perl(FileHandle)
 BuildRequires:  perl(Future) >= 0.29
 BuildRequires:  perl(IO::Handle)
 BuildRequires:  perl(IO::Select)
+BuildRequires:  perl(IO::Socket::INET)
 BuildRequires:  perl(IO::Socket::UNIX)
 BuildRequires:  perl(IPC::Open3)
 BuildRequires:  perl(JSON::PP)
@@ -43,7 +44,7 @@ BuildRequires:  perl(Moo::Role)
 BuildRequires:  perl(MRO::Compat)
 BuildRequires:  perl(POSIX)
 BuildRequires:  perl(Scalar::Util)
-BuildRequires:  perl(strictures) >= 1
+BuildRequires:  perl(strictures) >= 2
 BuildRequires:  perl(String::ShellQuote)
 BuildRequires:  perl(Symbol)
 BuildRequires:  perl(Sys::Hostname)
@@ -68,11 +69,13 @@ Requires:       perl(Method::Generate::DemolishAll)
 Requires:       perl(Moo) >= 1.006
 Requires:       perl(Moo::HandleMoose::_TypeMap)
 Requires:       perl(MRO::Compat)
+Requires:       perl(strictures) >= 2
 Requires:       openssh-clients
 Requires:       sudo
 
 %global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^perl\\(Future\\)$
 %global __requires_exclude %__requires_exclude|^perl\\(Moo\\)$
+%global __requires_exclude %__requires_exclude|^perl\\(strictures\\) >= 1$
 %global __provides_exclude %{?__provides_exclude:%__provides_exclude|}^perl\\(maybe\\)$
 %global __provides_exclude %__provides_exclude|^perl\\(maybe::start\\)$
 %global __provides_exclude %__provides_exclude|^perl\\(start\\)$
@@ -105,6 +108,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Mon Aug 29 2016 Jitka Plesnikova <jplesnik@redhat.com> - 0.004000-1
+- 0.004000 bump
+
 * Tue May 17 2016 Jitka Plesnikova <jplesnik@redhat.com> - 0.003006-3
 - Perl 5.24 rebuild
 
