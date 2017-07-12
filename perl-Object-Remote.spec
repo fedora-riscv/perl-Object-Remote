@@ -7,7 +7,7 @@ URL:            http://search.cpan.org/dist/Object-Remote/
 Source0:        http://www.cpan.org/authors/id/M/MS/MSTROUT/Object-Remote-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  make
-BuildRequires:  perl
+BuildRequires:  perl-interpreter
 BuildRequires:  perl-generators
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.76
 BuildRequires:  perl(strict)
