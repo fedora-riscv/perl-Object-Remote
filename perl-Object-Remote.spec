@@ -3,8 +3,8 @@ Version:        0.004000
 Release:        5%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
-URL:            http://search.cpan.org/dist/Object-Remote/
-Source0:        http://www.cpan.org/authors/id/M/MS/MSTROUT/Object-Remote-%{version}.tar.gz
+URL:            https://metacpan.org/release/Object-Remote
+Source0:        https://cpan.metacpan.org/authors/id/M/MS/MSTROUT/Object-Remote-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-interpreter
