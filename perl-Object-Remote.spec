@@ -1,10 +1,12 @@
 Name:           perl-Object-Remote
 Version:        0.004000
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Object-Remote
 Source0:        https://cpan.metacpan.org/authors/id/M/MS/MSTROUT/Object-Remote-%{version}.tar.gz
+# Adapt to changes in Moo-2.003006, CPAN RT#130885
+Patch0:         Object-Remote-0.004000-Adapt-to-Moo-2.003006-that-does-not-load-Devel-Globa.patch
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-interpreter
@@ -88,6 +90,7 @@ are other connection mechanisms available.
 
 %prep
 %setup -q -n Object-Remote-%{version}
+%patch0 -p1
 sed -i -e '1s|#!/usr/bin/env perl|#!perl|' bin/*
 
 %build
@@ -108,6 +111,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Tue Nov 26 2019 Petr Pisar <ppisar@redhat.com> - 0.004000-11
+- Adapt to changes in Moo-2.003006 (CPAN RT#130885)
+
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.004000-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
