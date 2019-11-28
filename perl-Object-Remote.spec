@@ -1,12 +1,10 @@
 Name:           perl-Object-Remote
-Version:        0.004000
-Release:        11%{?dist}
+Version:        0.004001
+Release:        1%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Object-Remote
-Source0:        https://cpan.metacpan.org/authors/id/M/MS/MSTROUT/Object-Remote-%{version}.tar.gz
-# Adapt to changes in Moo-2.003006, CPAN RT#130885
-Patch0:         Object-Remote-0.004000-Adapt-to-Moo-2.003006-that-does-not-load-Devel-Globa.patch
+Source0:        https://cpan.metacpan.org/authors/id/H/HA/HAARG/Object-Remote-%{version}.tar.gz
 BuildArch:      noarch
 BuildRequires:  make
 BuildRequires:  perl-interpreter
@@ -23,6 +21,7 @@ BuildRequires:  perl(Carp)
 BuildRequires:  perl(Class::C3)
 # Class::C3::next - the part of perl-Class-C3, but it isn't listed in provides
 BuildRequires:  perl(Config)
+BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Exporter)
 BuildRequires:  perl(Exporter::Declare)
 BuildRequires:  perl(File::Spec)
@@ -63,6 +62,7 @@ BuildRequires:  perl(Tie::Hash)
 Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
 Requires:       perl(Algorithm::C3)
 Requires:       perl(Class::C3)
+Requires:       perl(Devel::GlobalDestruction)
 Requires:       perl(Future) >= 0.29
 Requires:       perl(Log::Contextual) >= 0.005
 Requires:       perl(Log::Contextual::Role::Router)
@@ -90,27 +90,30 @@ are other connection mechanisms available.
 
 %prep
 %setup -q -n Object-Remote-%{version}
-%patch0 -p1
 sed -i -e '1s|#!/usr/bin/env perl|#!perl|' bin/*
 
 %build
-perl Makefile.PL INSTALLDIRS=vendor NO_PACKLIST=1
-make %{?_smp_mflags}
+perl Makefile.PL INSTALLDIRS=vendor NO_PACKLIST=1 NO_PERLLOCAL=1
+%{make_build}
 
 %install
-make pure_install DESTDIR=$RPM_BUILD_ROOT
+%{make_install}
 %{_fixperms} $RPM_BUILD_ROOT/*
 
 %check
 make test
 
 %files
+%license LICENSE
 %doc Changes README
 %{_bindir}/*
 %{perl_vendorlib}/*
 %{_mandir}/man3/*
 
 %changelog
+* Thu Nov 28 2019 Jitka Plesnikova <jplesnik@redhat.com> - 0.004001-1
+- 0.004001 bump
+
 * Tue Nov 26 2019 Petr Pisar <ppisar@redhat.com> - 0.004000-11
 - Adapt to changes in Moo-2.003006 (CPAN RT#130885)
 
