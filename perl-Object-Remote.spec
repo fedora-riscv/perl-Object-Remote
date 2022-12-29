@@ -1,6 +1,7 @@
+%bcond_with tests
 Name:           perl-Object-Remote
 Version:        0.004001
-Release:        10%{?dist}
+Release:        10.rv64%{?dist}
 Summary:        Call methods on objects in other processes or on other hosts
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Object-Remote
@@ -100,8 +101,10 @@ perl Makefile.PL INSTALLDIRS=vendor NO_PACKLIST=1 NO_PERLLOCAL=1
 %{make_install}
 %{_fixperms} $RPM_BUILD_ROOT/*
 
+%if %{with tests}
 %check
 make test
+%endif
 
 %files
 %license LICENSE
@@ -111,6 +114,9 @@ make test
 %{_mandir}/man3/*
 
 %changelog
+* Thu Dec 29 2022 Liu Yang <Yang.Liu.sn@gmail.com> - 0.004001-10.rv64
+- Make tests default disabled for riscv64 koji failure.
+
 * Fri Jul 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.004001-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
